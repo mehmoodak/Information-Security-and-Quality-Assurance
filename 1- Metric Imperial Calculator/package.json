@@ -1,0 +1,40 @@
+{
+	"name": "metric-imperial-calculator",
+	"version": "1.0.0",
+	"description": "Metric Imperial Converter from FreeCodeCamp project.",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon server/index.js",
+		"pretest": "node_modules/.bin/eslint --ignore-path .gitignore .",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mehmoodak/Information-Security-and-Quality-Assurance.git"
+	},
+	"keywords": [
+		"information-security",
+		"quality-assurance",
+		"freecodecamp",
+		"full-stack-certification"
+	],
+	"author": "Mehmood Ahmad Khan",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mehmoodak/Information-Security-and-Quality-Assurance/issues"
+	},
+	"homepage": "https://github.com/mehmoodak/Information-Security-and-Quality-Assurance#readme",
+	"dependencies": {
+		"dotenv": "^7.0.0",
+		"express": "^4.16.4",
+		"pug": "^2.0.3"
+	},
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"eslint-config-airbnb": "^17.1.0",
+		"eslint-plugin-import": "^2.17.2",
+		"eslint-plugin-jsx-a11y": "^6.2.1",
+		"eslint-plugin-react": "^7.12.4",
+		"nodemon": "^1.18.11"
+	}
+}
