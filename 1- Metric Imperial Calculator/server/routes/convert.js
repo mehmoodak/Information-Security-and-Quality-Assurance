@@ -10,8 +10,6 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const { input } = req.query;
 
-  if (!input) throw new Error('Invalid Parameters');
-
   const number = getNumber(input);
   const unit = getUnit(input);
   const response = convert(number, unit);
