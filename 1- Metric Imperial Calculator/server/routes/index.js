@@ -17,6 +17,6 @@ router.use('/api/convert', convertRoute);
 router.use((req, res, next) => res.status(404).send('Error 404, Not Found.'));
 
 // eslint-disable-next-line no-unused-vars
-router.use((err, req, res, next) => res.status(500).send('500 Internal Server Error'));
+router.use((err, req, res, next) => res.status(500).send(`500 Internal Server Error. <br> ${err}`));
 
 module.exports = router;
