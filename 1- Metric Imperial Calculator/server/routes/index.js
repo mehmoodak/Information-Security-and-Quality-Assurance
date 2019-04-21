@@ -7,9 +7,7 @@ const convertRoute = require('./convert');
 // Initializations
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.render('index');
-});
+router.get('/', (req, res) => res.render('index'));
 
 router.use('/api/convert', convertRoute);
 

@@ -45,6 +45,13 @@ const converterList = {
 
 const ConvertService = {
 
+  /**
+   * Returns unit if it is available on our converterList.
+   *
+   * @param {string} input string that contains number and unit.
+   *
+   * @returns {string | null}
+   */
   getUnit(input) {
     const regEx = new RegExp('[a-z]', 'i');
     const result = regEx.exec(input);
@@ -60,6 +67,13 @@ const ConvertService = {
     return null;
   },
 
+  /**
+   * Returns number from the string.
+   *
+   * @param {string} input string that contains number and unit.
+   *
+   * @returns {number | null} returns number if available, 1 if empty and null if invalid number
+   */
   getNumber(input) {
     try {
       const regEx = new RegExp('[a-z]', 'i');
@@ -85,6 +99,14 @@ const ConvertService = {
     }
   },
 
+  /**
+   * Convert the given unit to another unit. Criteria is defined in convertList.
+   *
+   * @param {number} number number to convert
+   * @param {string} unit unit to convert
+   *
+   * @returns {object} json response of the calculation
+   */
   convert(number, unit) {
     if (!number || !unit) {
       let msg = '';

@@ -17,10 +17,10 @@ app.use(cors({
   origin: config[process.env.NODE_ENV].origin + process.env.PORT,
 }));
 app.use(express.static('public'));
-app.set('views', path.join(__dirname, './views'));
-app.set('view engine', 'pug');
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'pug');
 // Set Locals
 app.locals.title = config[app.get('env')].sitename;
 
