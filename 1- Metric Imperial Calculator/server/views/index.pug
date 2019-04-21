@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		link(rel="stylesheet", type="text/css", href="./css/style.css")
+		title Metric Imperial Converter
+	body
+		h1.page-heading Metric Imperial Converter
+		form(action="/api/convert")
+			input(type="text" placeholder="Enter value to convert")
+			input(type="submit" value="Convert")
+		hr
+		h2 Examples
+		h3 Usage
+		code
+			| /api/convert?input=4gal
+			br
+			| /api/convert?input=1/2km
+			br
+			| /api/convert?input=5.4/3lbs
+			br
+			| /api/convert?input=kg
+		h3 Return
+		code {initNum: 3.1, initUnit: 'mi', returnNum: 5.0000008, returnUnit: 'km', string: '3.1 miles converts to 5.00002 kilometers'}
