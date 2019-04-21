@@ -132,11 +132,14 @@ const ConvertService = {
     const string = `${number} ${unit} converts to ${Number.parseFloat(returnNum).toFixed(5)} ${returnUnit}`;
 
     return {
-      initNum: number,
-      initUnit: unit,
-      returnNum,
-      returnUnit,
-      string,
+      success: true,
+      data: {
+        initNum: number,
+        initUnit: unit,
+        returnNum,
+        returnUnit,
+        string,
+      },
     };
   },
 };

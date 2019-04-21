@@ -14,8 +14,9 @@ router.get('/', (req, res) => {
 
   const number = getNumber(input);
   const unit = getUnit(input);
+  const response = convert(number, unit);
 
-  return res.json(convert(number, unit));
+  return res.status(response.success ? 200 : 400).json(response);
 });
 
 module.exports = router;
