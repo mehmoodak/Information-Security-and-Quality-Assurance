@@ -25,6 +25,7 @@
 	},
 	"homepage": "https://github.com/mehmoodak/Information-Security-and-Quality-Assurance#readme",
 	"dependencies": {
+		"cors": "^2.8.5",
 		"dotenv": "^7.0.0",
 		"express": "^4.16.4",
 		"helmet": "^3.16.0",
