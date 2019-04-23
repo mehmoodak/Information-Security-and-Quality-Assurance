@@ -34,7 +34,7 @@ const converterList = {
     convertUnit: 'km',
     convertRate: 1.60934,
   },
-  kilometer: {
+  km: {
     name: 'kilometers',
     unit: 'km',
     convertName: 'miles',
@@ -128,8 +128,8 @@ const ConvertService = {
       };
     }
 
-    const returnNum = number * converterList[unit].convertRate;
-    const returnUnit = converterList[unit].convertUnit;
+    const returnNum = number * converterList[unit.toLowerCase()].convertRate;
+    const returnUnit = converterList[unit.toLowerCase()].convertUnit;
     const string = `${number} ${unit} converts to ${Number.parseFloat(returnNum).toFixed(5)} ${returnUnit}`;
 
     return {
