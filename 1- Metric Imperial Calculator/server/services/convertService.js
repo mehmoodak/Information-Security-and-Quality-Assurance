@@ -43,8 +43,7 @@ const converterList = {
   },
 };
 
-const ConvertService = {
-
+function ConvertService() {
   /**
    * Returns unit if it is available on our converterList.
    *
@@ -52,7 +51,7 @@ const ConvertService = {
    *
    * @returns {string | null}
    */
-  getUnit(input) {
+  this.getUnit = (input) => {
     const regEx = new RegExp('[a-z]', 'i');
     const result = regEx.exec(input);
 
@@ -65,7 +64,7 @@ const ConvertService = {
     }
 
     return null;
-  },
+  };
 
   /**
    * Returns number from the string.
@@ -74,7 +73,7 @@ const ConvertService = {
    *
    * @returns {number | null} returns number if available, 1 if empty and null if invalid number
    */
-  getNumber(input) {
+  this.getNumber = (input) => {
     try {
       const regEx = new RegExp('[a-z]', 'i');
       const result = regEx.exec(input);
@@ -98,7 +97,7 @@ const ConvertService = {
     } catch (e) {
       return null;
     }
-  },
+  };
 
   /**
    * Convert the given unit to another unit. Criteria is defined in convertList.
@@ -108,7 +107,20 @@ const ConvertService = {
    *
    * @returns {object} json response of the calculation
    */
-  convert(number, unit) {
+  this.getReturnUnit = (unit) => {
+    const returnUnit = converterList[unit.toLowerCase()].convertUnit;
+    return returnUnit || null;
+  };
+
+  /**
+   * Convert the given unit to another unit. Criteria is defined in convertList.
+   *
+   * @param {number} number number to convert
+   * @param {string} unit unit to convert
+   *
+   * @returns {object} json response of the calculation
+   */
+  this.convert = (number, unit) => {
     if (!number || !unit) {
       let msg = '';
 
@@ -129,7 +141,7 @@ const ConvertService = {
     }
 
     const returnNum = number * converterList[unit.toLowerCase()].convertRate;
-    const returnUnit = converterList[unit.toLowerCase()].convertUnit;
+    const returnUnit = this.getReturnUnit(unit);
     const string = `${number} ${unit} converts to ${Number.parseFloat(returnNum).toFixed(5)} ${returnUnit}`;
 
     return {
@@ -142,7 +154,7 @@ const ConvertService = {
         string,
       },
     };
-  },
-};
+  };
+}
 
 module.exports = ConvertService;
