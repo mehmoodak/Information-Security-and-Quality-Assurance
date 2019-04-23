@@ -82,18 +82,19 @@ const ConvertService = {
 
       if (result) {
         number = input.slice(0, result.index);
-
-        // eslint-disable-next-line no-eval
-        return (number === '') ? 1 : eval(number);
-      }
-
-      if (input) {
+      } else if (input) {
         number = input.slice(0, input.length);
-        // eslint-disable-next-line no-eval
-        return (number === '') ? 1 : eval(number);
       }
 
-      return null;
+      const doubleSlashRegEx = new RegExp('[/].*[/]', 'g');
+      const isDoubleSlash = doubleSlashRegEx.test(number);
+
+      if (isDoubleSlash) {
+        return null;
+      }
+
+      // eslint-disable-next-line no-eval
+      return (number === '') ? 1 : eval(number);
     } catch (e) {
       return null;
     }
