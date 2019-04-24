@@ -3,7 +3,7 @@ const converterList = {
     name: 'gallons',
     unit: 'gal',
     convertName: 'liters',
-    convertUnit: 'L',
+    convertUnit: 'l',
     convertRate: 3.78541,
   },
   l: {
@@ -100,17 +100,25 @@ function ConvertService() {
   };
 
   /**
-   * Convert the given unit to another unit. Criteria is defined in convertList.
+   * Get the returnUnit from actual unit.
    *
-   * @param {number} number number to convert
    * @param {string} unit unit to convert
    *
-   * @returns {object} json response of the calculation
+   * @returns {string} convert unit or null
    */
   this.getReturnUnit = (unit) => {
     const returnUnit = converterList[unit.toLowerCase()].convertUnit;
     return returnUnit || null;
   };
+
+  /**
+   * Get the name of the unit
+   *
+   * @param {string} unit unit to convert
+   *
+   * @returns {string} name of the unit or null
+   */
+  this.spellOutUnit = unit => converterList[unit.toLowerCase()].name || null;
 
   /**
    * Convert the given unit to another unit. Criteria is defined in convertList.
@@ -142,7 +150,7 @@ function ConvertService() {
 
     const returnNum = number * converterList[unit.toLowerCase()].convertRate;
     const returnUnit = this.getReturnUnit(unit);
-    const string = `${number} ${unit} converts to ${Number.parseFloat(returnNum).toFixed(5)} ${returnUnit}`;
+    const string = `${number} ${this.spellOutUnit(unit)} converts to ${Number.parseFloat(returnNum).toFixed(5)} ${this.spellOutUnit(returnUnit)}`;
 
     return {
       success: true,
