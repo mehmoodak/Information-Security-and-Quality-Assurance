@@ -4,13 +4,16 @@
 const express = require('express');
 
 /**
+ * Internal Imports
+ */
+const issueRoutes = require('./issues');
+
+/**
  * Initializatiosn
  */
 const router = express.Router();
 
 // Routes
-router.get('/', (req, res) => {
-  res.send('Hello World');
-});
+router.use('/api/issues', issueRoutes);
 
 module.exports = router;
