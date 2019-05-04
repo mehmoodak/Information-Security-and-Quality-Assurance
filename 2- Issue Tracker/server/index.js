@@ -3,11 +3,18 @@
  */
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 
 /**
  * Initializations
  */
 const app = express();
+
+
+/**
+ * Middlewares
+ */
+app.use(helmet.xssFilter());
 
 /**
  * Routes
