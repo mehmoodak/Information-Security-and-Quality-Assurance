@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 /**
  * Internal Imports
  */
+const { initDb } = require('./db');
 const routes = require('./routes');
 
 /**
@@ -55,4 +56,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(process.env.PORT);
+initDb(() => {
+  app.listen(process.env.PORT, (err) => {
+    if (err) throw err;
+
+    console.log('Issue Tracker API up and running...');
+  });
+});
