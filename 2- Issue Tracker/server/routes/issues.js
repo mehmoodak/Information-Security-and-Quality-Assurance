@@ -4,6 +4,11 @@
 const express = require('express');
 
 /**
+ * Internal Imports
+ */
+const IssueController = require('./../controllers/issueController');
+
+/**
  * Initializations
  */
 const router = express.Router();
@@ -19,12 +24,23 @@ router
     });
   })
   .post('/:projectname', (req, res) => {
-    console.log(req.params.projectname);
-    console.log(req.body);
-    res.json({
-      success: true,
-      msg: 'Add issue to the project',
-    });
+    const issue = {
+      project: req.params.projectname,
+      ...req.body,
+    };
+
+    return IssueController.addIssue(issue)
+      .then((newIssue) => {
+        res.json({
+          success: true,
+          data: newIssue,
+        });
+      }).catch((err) => {
+        res.status(400).json({
+          success: false,
+          msg: 'Error while creating new issue',
+        });
+      });
   })
   .put('/:projectname', (req, res) => {
     console.log(req.params.projectname);

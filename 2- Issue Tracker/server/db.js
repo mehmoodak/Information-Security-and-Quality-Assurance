@@ -27,7 +27,8 @@ function initDb(callback) {
     return callback(null, db);
   }
 
-  return mongoose.connect(dbString, { useNewUrlParser: true }, connected);
+  db = mongoose.connect(dbString, { useNewUrlParser: true }, connected);
+  return null;
 }
 /**
  * Get the connected database instance.

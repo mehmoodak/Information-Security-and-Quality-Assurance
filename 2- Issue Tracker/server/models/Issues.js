@@ -3,9 +3,6 @@
  */
 const mongoose = require('mongoose');
 
-/**
- * Initializations
- */
 const { Schema } = mongoose;
 
 const IssueSchema = new Schema({
@@ -16,10 +13,10 @@ const IssueSchema = new Schema({
   status: { type: String, required: true, default: '' },
   open: { type: Boolean, required: true, default: true },
   project: { type: String, required: true },
-  created_on: { type: Date, defaut: Date.now() },
-  updated_on: { type: Date, defaut: Date.now() },
+  created_on: { type: Date, default: Date.now },
+  updated_on: { type: Date, default: Date.now },
 });
 
-const Issue = mongoose.model('Issue', IssueSchema);
+const Issue = mongoose.model('Issue', IssueSchema, 'issue');
 
 module.exports = Issue;
