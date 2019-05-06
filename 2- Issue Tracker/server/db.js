@@ -4,6 +4,8 @@
 const mongoose = require('mongoose');
 const assert = require('assert');
 
+mongoose.set('useFindAndModify', false); // for avoid using deprectated methods.
+
 const dbString = process.env.DB;
 let db;
 

@@ -16,12 +16,21 @@ const router = express.Router();
 // Routes
 router
   .get('/:projectname', (req, res) => {
-    console.log(req.params.projectname);
-    console.log(req.query);
-    res.json({
-      success: true,
-      msg: 'List all available filtered issues of the project',
-    });
+    const projectName = req.params.projectname;
+    const filters = req.query;
+
+    return IssueController.getIssueList(projectName, filters)
+      .then((issueList) => {
+        res.json({
+          success: true,
+          data: issueList,
+        });
+      }).catch(() => {
+        res.status(400).json({
+          success: false,
+          msg: 'Error while searching issue',
+        });
+      });
   })
   .post('/:projectname', (req, res) => {
     const issue = {
@@ -35,7 +44,7 @@ router
           success: true,
           data: newIssue,
         });
-      }).catch((err) => {
+      }).catch(() => {
         res.status(400).json({
           success: false,
           msg: 'Error while creating new issue',
@@ -43,20 +52,41 @@ router
       });
   })
   .put('/:projectname', (req, res) => {
-    console.log(req.params.projectname);
-    console.log(req.body);
-    res.json({
-      success: true,
-      msg: 'Update the issue of the project',
-    });
+    // eslint-disable-next-line
+    const id = req.body._id;
+    const valuesToUpdate = req.body;
+    // eslint-disable-next-line
+    delete valuesToUpdate._id;
+
+    return IssueController.updateIssue(id, valuesToUpdate)
+      .then((updatedIssue) => {
+        res.json({
+          success: true,
+          data: updatedIssue,
+        });
+      }).catch(() => {
+        res.status(400).json({
+          success: false,
+          msg: `Error while updating issue with id ${id}`,
+        });
+      });
   })
   .delete('/:projectname', (req, res) => {
-    console.log(req.params.projectname);
-    console.log(req.body);
-    res.json({
-      success: true,
-      msg: 'Delete the issue of the project',
-    });
+    // eslint-disable-next-line
+    const id = req.body._id;
+
+    return IssueController.deleteIssue(id)
+      .then((deletedIssue) => {
+        res.json({
+          success: true,
+          data: deletedIssue,
+        });
+      }).catch(() => {
+        res.status(400).json({
+          success: false,
+          msg: `Error while deleting issue with id ${id}`,
+        });
+      });
   });
 
 module.exports = router;
