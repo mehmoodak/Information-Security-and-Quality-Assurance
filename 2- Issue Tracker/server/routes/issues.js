@@ -54,9 +54,16 @@ router
   .put('/:projectname', (req, res) => {
     // eslint-disable-next-line
     const id = req.body._id;
-    const valuesToUpdate = req.body;
+    const valuesToUpdate = Object.assign({}, req.body);
     // eslint-disable-next-line
     delete valuesToUpdate._id;
+
+    if (!id || !Object.keys(valuesToUpdate).length) {
+      return res.json({
+        success: false,
+        msg: 'Empty id or values to update',
+      });
+    }
 
     return IssueController.updateIssue(id, valuesToUpdate)
       .then((updatedIssue) => {
@@ -74,6 +81,13 @@ router
   .delete('/:projectname', (req, res) => {
     // eslint-disable-next-line
     const id = req.body._id;
+
+    if (!id) {
+      return res.json({
+        success: false,
+        msg: 'Empty or invalid id.',
+      });
+    }
 
     return IssueController.deleteIssue(id)
       .then((deletedIssue) => {
