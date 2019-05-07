@@ -26,7 +26,7 @@ router
           data: issueList,
         });
       }).catch(() => {
-        res.status(400).json({
+        res.status(200).json({
           success: false,
           msg: 'Error while searching issue',
         });
@@ -45,7 +45,7 @@ router
           data: newIssue,
         });
       }).catch(() => {
-        res.status(400).json({
+        res.status(200).json({
           success: false,
           msg: 'Error while creating new issue',
         });
@@ -72,7 +72,7 @@ router
           data: updatedIssue,
         });
       }).catch(() => {
-        res.status(400).json({
+        res.status(200).json({
           success: false,
           msg: `Error while updating issue with id ${id}`,
         });
@@ -96,7 +96,7 @@ router
           data: deletedIssue,
         });
       }).catch(() => {
-        res.status(400).json({
+        res.status(200).json({
           success: false,
           msg: `Error while deleting issue with id ${id}`,
         });
